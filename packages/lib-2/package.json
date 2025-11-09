@@ -1,0 +1,23 @@
+{
+	"name": "@repro-turborepo-coverage-badges-actions/lib-2",
+	"version": "0.0.0",
+	"private": true,
+	"license": "MIT",
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {
+		"build": "tsc",
+		"test": "vitest",
+		"test-ci": "vitest --coverage --run",
+		"test-dev": "vitest --coverage"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@vitest/coverage-v8": "4.0.8",
+		"vitest": "4.0.8"
+	},
+	"exports": {
+		".": "./src/index.ts"
+	}
+}
