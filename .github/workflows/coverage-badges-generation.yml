@@ -1,0 +1,49 @@
+name: ⚡ Coverage badges generation
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  coverage-badges-generation:
+    name: 📣 Coverage badges generation
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          fetch-depth: 0
+
+      - name: 📦 Setup bun
+        uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76 # v2.0.2
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+        with:
+          node-version-file: ".node-version"
+          registry-url: "https://registry.npmjs.org"
+          cache-dependency-path: ./package.json
+
+      - name: 📥 Install deps
+        run: bun install --frozen-lockfile
+
+      - name: 🔍 Tests
+        run: bun turbo test-ci
+
+      - name: 🥁 Generating coverage badges
+        uses: jpb06/coverage-badges-action@11788d0fa0ef5076ed749ed5c1c8394d504a9fdd # v1.4.4
+        with:
+          badges-icon: vitest
+          badges-labels-prefix: "Vitest coverage"
+          commit-message: "chore: updating coverage badges"
+          commit-user: jpb06
+          commit-user-email: jpb.06@outlook.com
+          coverage-summary-path: |
+            ./packages/**/coverage/coverage-summary.json
+          output-folder: ./badges
