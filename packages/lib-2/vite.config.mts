@@ -5,7 +5,7 @@ export default defineConfig({
   test: {
     testTimeout: 5_000,
     coverage: {
-      reporter: ['json-summary'],
+      reporter: ['text', 'json-summary'],
       include: ['src/**/*.ts'],
       exclude: ['dist'],
     },

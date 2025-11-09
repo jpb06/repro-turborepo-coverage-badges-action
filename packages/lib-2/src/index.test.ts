@@ -8,4 +8,8 @@ describe('doSomeOtherStuff function', () => {
 
     expect(result).toBe('You selected B');
   });
+
+  it('should throw an error', () => {
+    expect(() => doSomeOtherStuff('')).toThrowError('Invalid input');
+  });
 });
