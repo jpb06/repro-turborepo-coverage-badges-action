@@ -7,6 +7,7 @@
 		"access": "public"
 	},
 	"scripts": {
+		"type-check": "tsc --noEmit",
 		"build": "tsc",
 		"test": "vitest",
 		"test-ci": "vitest --coverage --run",
