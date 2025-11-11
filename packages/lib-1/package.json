@@ -14,6 +14,7 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
+		"@repro-turborepo-coverage-badges-actions/typescript-config": "workspace:*",
 		"@vitest/coverage-v8": "4.0.8",
 		"vitest": "4.0.8"
 	},
